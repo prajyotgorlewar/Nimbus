@@ -70,7 +70,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/Password"
             android:layout_width="300dp"
             android:layout_height="46dp"
             android:ems="10"
@@ -98,7 +98,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/EmailAddress"
             android:layout_width="294dp"
             android:layout_height="46dp"
             android:ems="10"
