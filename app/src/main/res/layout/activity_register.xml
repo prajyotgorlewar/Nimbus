@@ -29,7 +29,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <EditText
-            android:id="@+id/editTextConfirmPassword"
+            android:id="@+id/rgConfirmPassword"
             android:layout_width="300dp"
             android:layout_height="46dp"
             android:ems="10"
@@ -57,7 +57,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <EditText
-            android:id="@+id/editTextTextUsername"
+            android:id="@+id/rgUsername"
             android:layout_width="294dp"
             android:layout_height="46dp"
             android:ems="10" />
@@ -65,7 +65,7 @@
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilerg"
+        android:id="@+id/rgProfileImg"
         android:layout_width="151dp"
         android:layout_height="130dp"
         android:src="@drawable/photocamera"
@@ -91,7 +91,7 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/rgSignup"
         android:layout_width="200dp"
         android:layout_height="59dp"
         android:backgroundTint="#000000"
@@ -127,7 +127,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/rgPassword"
             android:layout_width="300dp"
             android:layout_height="46dp"
             android:ems="10"
@@ -155,7 +155,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/rgEmail"
             android:layout_width="294dp"
             android:layout_height="46dp"
             android:ems="10"
@@ -179,7 +179,7 @@
         app:layout_constraintVertical_bias="0.936" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/rgLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
