@@ -62,7 +62,7 @@ public class login extends AppCompatActivity {
                 {
                     email.setError("Enter Valid Email ID");
                 }
-                else if(!(Password.length() < 8))
+                else if(!(Password.length() >= 8))
                 {
                     password.setError("Password too short");
                 }
@@ -73,6 +73,7 @@ public class login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 try {
+                                    Toast.makeText(login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(login.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();

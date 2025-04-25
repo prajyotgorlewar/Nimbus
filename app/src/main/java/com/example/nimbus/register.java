@@ -22,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +32,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -40,13 +45,13 @@ public class register extends AppCompatActivity {
     Button rgSignup;
     CircleImageView rgProfileImg;
     FirebaseAuth auth;
-    Uri imageURI;
-    String imageuri;
-    String emailPattern = "[a-zA-Z0-9.-]+(.[a-zA-Z]{2,})+";
     FirebaseDatabase database;
     private ActivityResultLauncher<Intent> imageChooserLauncher;
     private Uri selectedImageUri;
-
+    private RecyclerView avatarRecyclerView;
+    private AvatarAdapter avatarAdapter;
+    private int selectedAvatarSerial = 1;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +71,26 @@ public class register extends AppCompatActivity {
         rgConfirmPassword = findViewById(R.id.rgConfirmPassword);
         rgSignup = findViewById(R.id.rgSignup);
         rgProfileImg = findViewById(R.id.rgProfileImg);
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
+        avatarRecyclerView = findViewById(R.id.avatarRecyclerView);
+        avatarRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        List<Integer> avatarList = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            avatarList.add(i);
+        }
+        avatarAdapter = new AvatarAdapter(this, avatarList);
+        avatarRecyclerView.setAdapter(avatarAdapter);
+
+        avatarAdapter.setOnAvatarSelectedListener(new AvatarAdapter.OnAvatarSelectedListener() {
+            @Override
+            public void onAvatarSelected(int avatarSerial) {
+                selectedAvatarSerial = avatarSerial;
+                int avatarImageResId = AvatarUtils.getAvatarResource(avatarSerial);
+                rgProfileImg.setImageResource(avatarImageResId);
+            }
+        });
 
         imageChooserLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -73,15 +98,9 @@ public class register extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
                             Intent data = result.getData();
                             if (data != null && data.getData() != null) {
                                 selectedImageUri = data.getData();
-                                // Load the selected image into your ImageView
-                                rgProfileImg.setImageURI(selectedImageUri);
-                                // Now you have the URI of the selected image (selectedImageUri)
-                                // You can proceed to upload this to Firebase Storage later
-                                // when the user clicks the signup button.
                             }
                         }
                     }
@@ -99,10 +118,7 @@ public class register extends AppCompatActivity {
         rgProfileImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 10);
+
             }
         });
 
@@ -120,7 +136,7 @@ public class register extends AppCompatActivity {
                     Toast.makeText(register.this, "Enter Valid Information", Toast.LENGTH_SHORT).show();
                 } else if (!email.matches(emailPattern)) {
                     rgEmail.setError("Enter Valid Email Id");
-                } else if (!(rgPassword.length() < 8)) {
+                } else if (!(rgPassword.length() >= 8)) {
                     rgPassword.setError("Password too short");
                 } else if (!password.equals(cpassword)) {
                     rgConfirmPassword.setError("The Password doesn't match! ");
@@ -131,19 +147,17 @@ public class register extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = auth.getCurrentUser();
                                 if (user != null) {
-                                    String id = task.getResult().getUser().getUid();
+                                    String id = user.getUid();
                                     DatabaseReference userReference = database.getReference().child("users").child(id);
-                                    int selectedAvatarSerial = getSelectedAvatarSerial();
-                                    users newUser = new users(id,name,email,password,selectedAvatarSerial,status);
-
+                                    users newUser = new users(id, name, email, password, String.valueOf(selectedAvatarSerial), status);
                                     userReference.setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(register.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                                                  Intent intent = new Intent(register.this, MainActivity.class);
-                                                  startActivity(intent);
-                                                  finish();
+                                                Intent intent = new Intent(register.this, MainActivity.class);
+                                                startActivity(intent);
+                                                finish();
                                             } else {
                                                 Toast.makeText(register.this, "Failed to save user data: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             }
@@ -160,21 +174,6 @@ public class register extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 10)
-        {
-            if(data!=null)
-            {
-                imageURI = data.getData();
-                rgProfileImg.setImageURI(imageURI);
-            }
-        }
-    }
 
-    private int getSelectedAvatarSerial() {
-        return 1;
-    }
+
 }
