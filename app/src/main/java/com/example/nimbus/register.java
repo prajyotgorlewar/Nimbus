@@ -173,7 +173,4 @@ public class register extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
