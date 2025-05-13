@@ -1,5 +1,6 @@
 package com.example.nimbus;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,6 +27,7 @@ public class login extends AppCompatActivity {
     EditText email, password;
     FirebaseAuth auth;
     String emailPattern = "[a-zA-Z0-9.-]+(.[a-zA-Z]{2,})+";
+    android.app.ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,10 @@ public class login extends AppCompatActivity {
         button = findViewById(R.id.button);
         email = findViewById(R.id.EmailAddress);
         password = findViewById(R.id.Password);
-
         auth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,28 +54,25 @@ public class login extends AppCompatActivity {
                 String Email = email.getText().toString();
                 String Password = password.getText().toString();
 
-                if((TextUtils.isEmpty(Email)))
-                {
+                if ((TextUtils.isEmpty(Email))) {
+                    progressDialog.dismiss();
                     Toast.makeText(login.this, "Enter your Email", Toast.LENGTH_SHORT).show();
-                }
-                else if((TextUtils.isEmpty(Password)))
-                {
+                } else if ((TextUtils.isEmpty(Password))) {
+                    progressDialog.dismiss();
                     Toast.makeText(login.this, "Enter your Password", Toast.LENGTH_SHORT).show();
-                }
-                else if(!Email.matches(emailPattern))
-                {
+                } else if (!Email.matches(emailPattern)) {
+                    progressDialog.dismiss();
                     email.setError("Enter Valid Email ID");
-                }
-                else if(!(Password.length() >= 8))
-                {
+                } else if (!(Password.length() >= 8)) {
+                    progressDialog.dismiss();
                     password.setError("Password too short");
-                }
-                else {
+                } else {
 
                     auth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                progressDialog.show();
                                 try {
                                     Toast.makeText(login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(login.this, MainActivity.class);
