@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class login extends AppCompatActivity {
 
+    TextView signupBtn;
     Button button;
     EditText email, password;
     FirebaseAuth auth;
@@ -40,6 +42,7 @@ public class login extends AppCompatActivity {
             return insets;
         });
 
+        signupBtn = findViewById(R.id.signup);
         button = findViewById(R.id.button);
         email = findViewById(R.id.EmailAddress);
         password = findViewById(R.id.Password);
@@ -47,6 +50,15 @@ public class login extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
+
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(login.this, register.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
