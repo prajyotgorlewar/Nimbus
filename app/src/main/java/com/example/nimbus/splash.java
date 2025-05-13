@@ -2,11 +2,13 @@ package com.example.nimbus;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -32,8 +34,8 @@ public class splash extends AppCompatActivity {
 
         logo = findViewById(R.id.logoImg);
         name = findViewById(R.id.logoName);
-        topAnimation = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        bottomAnimation = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
         logo.setAnimation(topAnimation);
         name.setAnimation(bottomAnimation);
 
