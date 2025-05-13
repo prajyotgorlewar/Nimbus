@@ -1,6 +1,7 @@
 package com.example.nimbus;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class register extends AppCompatActivity {
     private AvatarAdapter avatarAdapter;
     private int selectedAvatarSerial = 1;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    android.app.ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,9 @@ public class register extends AppCompatActivity {
         rgProfileImg = findViewById(R.id.rgProfileImg);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.setCancelable(false);
 
         avatarRecyclerView = findViewById(R.id.avatarRecyclerView);
         avatarRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -133,12 +138,16 @@ public class register extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email)
                         || TextUtils.isEmpty(password) || TextUtils.isEmpty(cpassword)) {
+                    progressDialog.dismiss();
                     Toast.makeText(register.this, "Enter Valid Information", Toast.LENGTH_SHORT).show();
                 } else if (!email.matches(emailPattern)) {
+                    progressDialog.dismiss();
                     rgEmail.setError("Enter Valid Email Id");
                 } else if (!(rgPassword.length() >= 8)) {
+                    progressDialog.dismiss();
                     rgPassword.setError("Password too short");
                 } else if (!password.equals(cpassword)) {
+                    progressDialog.dismiss();
                     rgConfirmPassword.setError("The Password doesn't match! ");
                 } else {
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -154,6 +163,7 @@ public class register extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
+                                                progressDialog.show();
                                                 Toast.makeText(register.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(register.this, MainActivity.class);
                                                 startActivity(intent);
