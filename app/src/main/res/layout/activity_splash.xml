@@ -9,6 +9,7 @@
     tools:context=".splash">
 
     <ImageView
+        android:id="@+id/logoImg"
         android:layout_width="@dimen/_168sdp"
         android:layout_height="@dimen/_84sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +20,7 @@
         app:srcCompat="@drawable/chat" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/logoName"
         android:layout_width="@dimen/_90sdp"
         android:layout_height="@dimen/_30sdp"
         android:text="Nimbus"
