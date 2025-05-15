@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_13sdp"
+    android:background="@drawable/border_main">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,9 +12,10 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/rgProfileImg"
-            android:layout_width="151dp"
-            android:layout_height="130dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:src="@drawable/photocamera"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_constraintBottom_toBottomOf="parent"
             android:layout_constraintEnd_toEndOf="parent"
             android:layout_constraintStart_toStartOf="parent"
@@ -23,8 +26,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            >
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="23.40dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="10.40dp"
+                android:text="Status">
+            </TextView>
+
 
 
         </LinearLayout>
