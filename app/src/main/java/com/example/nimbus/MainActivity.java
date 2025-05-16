@@ -48,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()) {
+                    users users = dataSnapshot.getValue(users.class);
+                    usersArrayList.add(users);
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -59,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
         mainUserRecycler = findViewById(R.id.mainUserRecycler);
         mainUserRecycler.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new UserAdapter(MainActivity.this, usersArrayList);
         mainUserRecycler.setAdapter(adapter);
 
-        if(auth.getCurrentUser() == null)
-        {
+        if (auth.getCurrentUser() == null) {
             Intent intent = new Intent(MainActivity.this, login.class);
             startActivity(intent);
         }
