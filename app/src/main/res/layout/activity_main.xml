@@ -40,7 +40,7 @@
             android:layout_height="@dimen/_28sdp"
             android:layout_gravity="center"
             android:background="@drawable/logout"></ImageView>
-        
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
