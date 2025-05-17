@@ -10,20 +10,22 @@
 
     <LinearLayout
         android:id="@+id/toolBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="440dp"
+        android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="922dp"
         android:background="@color/white"
         android:gravity="right">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="63dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="1"
@@ -37,57 +39,59 @@
             android:layout_width="@dimen/_28sdp"
             android:layout_height="@dimen/_28sdp"
             android:layout_gravity="center"
-            android:background="@drawable/logout">
-        </ImageView>
-
+            android:background="@drawable/logout"></ImageView>
 
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainUserRecycler"
-        android:layout_width="318dp"
-        android:layout_height="486dp"
+        android:layout_width="374dp"
+        android:layout_height="441dp"
         android:layout_below="@+id/toolBar"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="208dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="128dp" />
+
+        android:layout_marginStart="13dp"
+
+        android:layout_marginTop="279dp"
+        android:layout_marginBottom="449dp" />
 
     <ImageView
-        android:layout_width="53dp"
-        android:layout_height="55dp"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="110dp"
-        android:layout_marginEnd="248dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="888dp"
+        android:layout_marginEnd="278dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/camera">
 
     </ImageView>
 
     <ImageView
-        android:layout_width="53dp"
-        android:layout_height="55dp"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="180dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="207dp"
+        android:layout_marginTop="889dp"
+        android:layout_marginEnd="191dp"
+        android:layout_marginBottom="49dp"
         android:background="@drawable/chat"></ImageView>
 
     <ImageView
-        android:layout_width="53dp"
-        android:layout_height="55dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="249dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="897dp"
         android:layout_marginEnd="108dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/sett"></ImageView>
