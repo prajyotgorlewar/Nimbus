@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="@drawable/two"
     android:layout_height="match_parent"
+    android:background="@drawable/two"
     tools:context=".register">
 
     <LinearLayout
@@ -93,8 +93,8 @@
         android:layout_height="@dimen/_45sdp"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
-        android:textColor="@color/white"
         android:text="SignUp"
+        android:textColor="@color/white"
         android:textSize="@dimen/_30sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -195,10 +195,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
-        android:textStyle="bold"
         android:text="LOGIN!"
         android:textColor="@color/black"
         android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
