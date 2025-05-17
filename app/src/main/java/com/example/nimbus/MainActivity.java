@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        DatabaseReference reference = database.getReference().child("user");
+        DatabaseReference reference = database.getReference().child("users");
         usersArrayList = new ArrayList<>();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        })
+        });
 
         mainUserRecycler = findViewById(R.id.mainUserRecycler);
         mainUserRecycler.setLayoutManager(new LinearLayoutManager(this));

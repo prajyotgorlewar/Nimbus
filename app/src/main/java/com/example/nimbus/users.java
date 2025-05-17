@@ -2,7 +2,7 @@ package com.example.nimbus;
 
 public class users {
     String profilePic, mail, username, password, userId, lastMsg, status;
-
+    public users() {}
     public users(String userId, String username, String mail, String password, String profilePic, String status) {
         this.userId = userId;
         this.username = username;
