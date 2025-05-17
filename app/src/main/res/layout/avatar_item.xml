@@ -13,5 +13,4 @@
         android:src="@drawable/avatar_1" android:scaleType="centerCrop"
         android:layout_margin="8dp"
         />
-
 </LinearLayout>
