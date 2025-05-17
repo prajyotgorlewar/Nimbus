@@ -43,5 +43,4 @@
                 android:textSize="10.40dp" />
         </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>
