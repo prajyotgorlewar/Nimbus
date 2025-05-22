@@ -48,12 +48,14 @@
         android:id="@+id/mainUserRecycler"
         android:layout_width="374dp"
         android:layout_height="441dp"
-        android:layout_below="@+id/toolBar"
-
-        android:layout_marginStart="13dp"
-
-        android:layout_marginTop="279dp"
-        android:layout_marginBottom="449dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="359dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="197dp" />
 
     <ImageView
         android:layout_width="59dp"
