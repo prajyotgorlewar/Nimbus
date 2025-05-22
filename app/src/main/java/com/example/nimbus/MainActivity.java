@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
-
-
-
         DatabaseReference reference = database.getReference().child("users");
         usersArrayList = new ArrayList<>();
         reference.addValueEventListener(new ValueEventListener() {
