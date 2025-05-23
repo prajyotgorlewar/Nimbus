@@ -59,18 +59,20 @@
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/_30sdp">
 
-            <TextView
+            <EditText
+                android:id="@+id/messageText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Type a Message"
                 android:layout_gravity="center"
-                android:textSize="17dp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
                 android:fontFamily="@font/poppins_regular"
-                android:layout_marginHorizontal="@dimen/_20sdp">
-            </TextView>
+                android:hint="Type a Message . . ."
+                android:background="@null"
+                android:textSize="17dp"></EditText>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/sendBtn"
             android:layout_width="110dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -82,8 +84,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:background="@drawable/sendbut">
-            </ImageView>
+                android:background="@drawable/sendbut"></ImageView>
 
         </androidx.cardview.widget.CardView>
 
