@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/rgProfileImg"
+            android:id="@+id/chatProfileImg"
             android:layout_width="151dp"
             android:layout_height="130dp"
             android:src="@drawable/photocamera"
@@ -28,13 +28,14 @@
             app:layout_constraintVertical_bias="0.258" />
 
         <TextView
+            android:id="@+id/receivername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:text="Prajyot Gorlewar"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"></TextView>
     </LinearLayout>
 

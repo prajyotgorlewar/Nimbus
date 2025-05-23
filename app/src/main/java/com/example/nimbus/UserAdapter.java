@@ -1,5 +1,6 @@
 package com.example.nimbus;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,17 +34,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
         holder.userstatus.setText(user.status);
 
         try {
-            // Convert string to int safely
             int avatarSerial = Integer.parseInt(user.profilePic);
-            // Get avatar resource ID
             int avatarResId = AvatarUtils.getAvatarResource(avatarSerial);
-            // Set image resource instead of URL
             holder.userImg.setImageResource(avatarResId);
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            // Optional: Set a default avatar in case of error
             holder.userImg.setImageResource(R.drawable.avatar_1);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mainActivity, ChatWindow.class);
+                intent.putExtra("name", user.getUsername());
+                intent.putExtra("receiverImg",user.getProfilePic());
+                intent.putExtra("uid", user.getUserId());
+                mainActivity.startActivity(intent);
+
+            }
+        });
     }
 
 
