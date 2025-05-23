@@ -65,21 +65,22 @@
                 android:layout_gravity="center"
                 android:textSize="17dp"
                 android:fontFamily="@font/poppins_regular"
-                android:layout_marginHorizontal="@dimen/_15sdp">
+                android:layout_marginHorizontal="@dimen/_20sdp">
             </TextView>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/_30sdp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
                 android:background="@drawable/sendbut">
             </ImageView>
 
