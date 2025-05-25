@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilerggg"
+        android:id="@+id/senderProfileImg"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
         android:src="@drawable/photocamera"
@@ -15,7 +15,7 @@
         />
 
     <TextView
-        android:id="@+id/msgsendertyp"
+        android:id="@+id/senderMessageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_1sdp"
         android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_toLeftOf="@id/profilerggg"
+        android:layout_toLeftOf="@id/senderProfileImg"
         android:background="@drawable/sender_shape"
         android:fontFamily="@font/poppins_regular"
         android:padding="@dimen/_7sdp"
