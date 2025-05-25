@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -36,9 +38,11 @@ public class ChatWindow extends AppCompatActivity {
     EditText messageText;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database;
-
     public static String senderImage;
     public static String receiverImage;
+    String senderRoom, receiverRoom;
+    RecyclerView messageRecycler;
+    ArrayList<messageModel> messageArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +59,11 @@ public class ChatWindow extends AppCompatActivity {
         receiverUid = getIntent().getStringExtra("uid");
         receiverImg = getIntent().getStringExtra("receiverImg");
 
+        messageArrayList = new ArrayList<>();
+
+        messageRecycler = findViewById(R.id.messageRecycler);
         profile = findViewById(R.id.chatProfileImg);
         receiverNameText = findViewById(R.id.receivername);
-
         messageText = findViewById(R.id.messageText);
         sendBtn = findViewById(R.id.sendBtn);
 
@@ -71,8 +77,23 @@ public class ChatWindow extends AppCompatActivity {
         }
 
         receiverNameText.setText("" + receiverName);
-        senderUid = firebaseAuth.getUid();
         DatabaseReference reference = database.getReference().child("users").child(firebaseAuth.getUid());
+        DatabaseReference chatReference = database.getReference().child("users").child(senderRoom).child("messages");
+
+        chatReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshots : snapshot.getChildren()) {
+                    messageModel messages = dataSnapshots.getValue(messageModel.class);
+                    messageArrayList.add(messages);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,6 +107,10 @@ public class ChatWindow extends AppCompatActivity {
 
             }
         });
+
+        senderUid = firebaseAuth.getUid();
+        senderRoom = senderUid + receiverUid;
+        receiverRoom = receiverUid + senderUid;
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +127,13 @@ public class ChatWindow extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                
+                                database.getReference().child("receiverRoom").child("messages").push().setValue(messageModel)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                            }
+                                        });
                             }
                         });
             }
