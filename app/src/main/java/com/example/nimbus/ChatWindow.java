@@ -1,6 +1,7 @@
 package com.example.nimbus;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +45,7 @@ public class ChatWindow extends AppCompatActivity {
     String senderRoom, receiverRoom;
     RecyclerView messageRecycler;
     ArrayList<messageModel> messageArrayList;
+    messageAdapter messageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +58,25 @@ public class ChatWindow extends AppCompatActivity {
             return insets;
         });
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
         receiverName = getIntent().getStringExtra("name");
         receiverUid = getIntent().getStringExtra("uid");
         receiverImg = getIntent().getStringExtra("receiverImg");
 
-        messageArrayList = new ArrayList<>();
+        senderUid = firebaseAuth.getUid();
+        senderRoom = senderUid + receiverUid;
+        receiverRoom = receiverUid + senderUid;
 
+        messageArrayList = new ArrayList<>();
         messageRecycler = findViewById(R.id.messageRecycler);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        messageRecycler.setLayoutManager(linearLayoutManager);
+        messageAdapter = new messageAdapter(messageArrayList, ChatWindow.this);
+        messageRecycler.setAdapter(messageAdapter);
+
         profile = findViewById(R.id.chatProfileImg);
         receiverNameText = findViewById(R.id.receivername);
         messageText = findViewById(R.id.messageText);
@@ -78,16 +93,20 @@ public class ChatWindow extends AppCompatActivity {
 
         receiverNameText.setText("" + receiverName);
         DatabaseReference reference = database.getReference().child("users").child(firebaseAuth.getUid());
-        DatabaseReference chatReference = database.getReference().child("users").child(senderRoom).child("messages");
+        DatabaseReference chatReference = database.getReference().child("chats").child(senderRoom).child("messages");
 
         chatReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshots : snapshot.getChildren()) {
+                messageArrayList.clear();
+                for (DataSnapshot dataSnapshots : snapshot.getChildren()) {
                     messageModel messages = dataSnapshots.getValue(messageModel.class);
+                    Log.d("FirebaseData", "Message: " + messages.getMessage() + ", SenderId: " + messages.getSenderId());
                     messageArrayList.add(messages);
                 }
+                messageAdapter.notifyDataSetChanged();
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -108,9 +127,6 @@ public class ChatWindow extends AppCompatActivity {
             }
         });
 
-        senderUid = firebaseAuth.getUid();
-        senderRoom = senderUid + receiverUid;
-        receiverRoom = receiverUid + senderUid;
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,16 +134,17 @@ public class ChatWindow extends AppCompatActivity {
                 String message = messageText.getText().toString();
                 if (message.isEmpty()) {
                     Toast.makeText(ChatWindow.this, "Type something first!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 messageText.setText("");
                 Date date = new Date();
                 messageModel messageModel = new messageModel(message, senderUid, date.getTime());
                 database = FirebaseDatabase.getInstance();
-                database.getReference().child("chats").child("senderRoom").child("messages").push().setValue(messageModel)
+                database.getReference().child("chats").child(senderRoom).child("messages").push().setValue(messageModel)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                database.getReference().child("receiverRoom").child("messages").push().setValue(messageModel)
+                                database.getReference().child("chats").child(receiverRoom).child("messages").push().setValue(messageModel)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
