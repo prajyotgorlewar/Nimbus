@@ -84,10 +84,10 @@
              />
 
         <ImageView
+            android:id="@+id/settings"
             android:layout_width="52dp"
             android:layout_height="52dp"
-            android:src="@drawable/sett"
-             />
+            android:src="@drawable/sett" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
