@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -21,8 +21,8 @@ public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.AvatarView
     private int selectedPosition = 0;
 
     public AvatarAdapter(Context context, List<Integer> avatarList) {
-        this.avatarList = avatarList;
         this.context = context;
+        this.avatarList = avatarList;
     }
 
     public interface OnAvatarSelectedListener {
@@ -36,37 +36,34 @@ public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.AvatarView
     @NonNull
     @Override
     public AvatarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.avatar_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.avatar_item, parent, false);
         return new AvatarViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AvatarViewHolder holder, int position) {
-        int adapterPosition = holder.getAdapterPosition(); // Get the adapter position
-        if (adapterPosition == RecyclerView.NO_POSITION) {
-            return; //check if the position is valid
-        }
-
-        int avatarSerial = avatarList.get(adapterPosition);
+        int avatarSerial = avatarList.get(position);
         int avatarImageResId = AvatarUtils.getAvatarResource(avatarSerial);
-
         holder.avatarImageView.setImageResource(avatarImageResId);
 
-        if (adapterPosition == selectedPosition) {
-            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.selected_avatar_background));
+        // Highlight selected avatar with border color
+        if (position == selectedPosition) {
+            holder.avatarImageView.setBorderColor(
+                    ContextCompat.getColor(context, R.color.selected_avatar_border));
+            holder.avatarImageView.setBorderWidth(6);
         } else {
-            holder.itemView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            holder.avatarImageView.setBorderColor(
+                    ContextCompat.getColor(context, android.R.color.transparent));
+            holder.avatarImageView.setBorderWidth(0);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    listener.onAvatarSelected(avatarSerial);
-                    selectedPosition = holder.getAdapterPosition(); // Use adapter position here too
-                    notifyDataSetChanged();
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null && holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
+                int previousSelected = selectedPosition;
+                selectedPosition = holder.getAdapterPosition();
+                listener.onAvatarSelected(avatarSerial);
+                notifyItemChanged(previousSelected);
+                notifyItemChanged(selectedPosition);
             }
         });
     }
