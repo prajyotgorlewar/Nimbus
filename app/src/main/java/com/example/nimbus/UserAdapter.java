@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -30,6 +33,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.viewholder holder, int position) {
         users user = usersArrayList.get(position);
+
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(user.getUserId())){
+            holder.itemView.setVisibility(View.GONE);
+        }
+
         holder.username.setText(user.username);
         holder.userstatus.setText(user.status);
 
