@@ -43,21 +43,21 @@
 
 ## 📲 Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/nimbus.git
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/your-username/nimbus.git](https://github.com/your-username/nimbus.git)
+    ```
 
-2. **Open the project in Android Studio**
+2.  **Open the project in Android Studio**
 
-3. **Set up Firebase**
-   Create a Firebase project.
-   Add google-services.json to the /app directory.
+3.  **Set up Firebase**
+    * Create a Firebase project.
+    * Add `google-services.json` to the `/app` directory.
 
-4. **Configure ZegoCloud**
-   Sign up at zegocloud.com.
-   Add your App ID and App Sign to the config files.
+4.  **Configure ZegoCloud**
+    * Sign up at zegocloud.com.
+    * Add your App ID and App Sign to the config files.
 
-1. **Clone the repository**
-   Build and run the app on an emulator or Android device.    
+5.  **Build and run the app on an emulator or Android device.** 
       
    
