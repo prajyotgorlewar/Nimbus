@@ -45,7 +45,7 @@
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/your-username/nimbus.git](https://github.com/your-username/nimbus.git)
+    git clone https://github.com/prajyotgorlewar/Nimbus.git
     ```
 
 2.  **Open the project in Android Studio**
