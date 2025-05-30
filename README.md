@@ -1,39 +1,63 @@
-# Nimbus
+# 🌩️ Nimbus
 
-Nimbus is a modern communication app designed for seamless global connection via email-based login. Unlike phone-based messengers, Nimbus allows you to discover and connect with all users of the app, message them, view their current status or tagline, and initiate instant video or voice calls — all powered by Firebase Authentication, Realtime Database, ZegoCloud SDK, and Firebase Cloud Messaging.
-
----
-
-## Features
-
-- **Email-based Authentication**: Register and login securely using email and password via Firebase Auth.
-- **Global User Directory**: See a real-time list of all Nimbus users currently registered.
-- **Status / Tagline**: Users can set a personal status or tagline visible to others for quick context.
-- **Instant Messaging**: Real-time chat with any user through Firebase Realtime Database.
-- **Video & Voice Calling**: High-quality video and voice calls powered by ZegoCloud SDK.
-- **Push Notifications**: Incoming call alerts via Firebase Cloud Messaging (FCM).
-- **User Profiles**: Display picture and status visible on chat and user list screens.
+**Nimbus** is a sleek, modern communication app that connects people around the world — no phone numbers required. Just sign in with your email, discover others instantly, and start chatting or calling with ease.
 
 ---
 
-## Technology Stack
+## 🚀 What Makes Nimbus Different?
 
-- **Firebase Authentication** — User registration & login
-- **Firebase Realtime Database** — Real-time chat & presence
-- **Firebase Cloud Messaging (FCM)** — Push notifications for calls
-- **ZegoCloud SDK** — Video & voice call integration
-- **Android (Java, XML)** — Frontend app development
-- **Material3 Design** — Modern UI/UX design
+- 🔐 **Email-Only Login**  
+  Sign in securely using your email — powered by **Firebase Authentication**.
+
+- 🌍 **Global User Directory**  
+  Instantly discover and connect with any user on Nimbus.
+
+- 💬 **Real-Time Messaging**  
+  Chat live with users using **Firebase Realtime Database**.
+
+- 📞 **Voice & Video Calls**  
+  Make high-quality calls with **ZegoCloud SDK**.
+
+- 🟢 **Status & Taglines**  
+  Set a short status that’s visible to others — like "Busy 🚫" or "Let's talk 👋".
+
+- 🔔 **Push Notifications**  
+  Get notified of incoming calls via **Firebase Cloud Messaging (FCM)**.
+
+- 🖼️ **User Profiles**  
+  Display pictures and taglines shown in chats and user lists.
 
 ---
 
-## Installation
+## 🛠️ Tech Stack
 
-1. Clone this repository to your local machine.  
-2. Open the project in Android Studio.  
-3. Configure your Firebase project and replace `google-services.json` in the `app` folder.  
-4. Add your ZegoCloud credentials in the appropriate configuration files.  
-5. Build and run the app on your device or emulator.
+| Feature                    | Technology                            |
+|----------------------------|---------------------------------------|
+| Auth & Login               | Firebase Authentication               |
+| Real-time Chat & Presence  | Firebase Realtime Database            |
+| Push Notifications         | Firebase Cloud Messaging              |
+| Voice/Video Calling        | ZegoCloud SDK                         |
+| UI/UX                      | Android (Java, XML), Material3 Design |
 
 ---
 
+## 📲 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/nimbus.git
+
+2. **Open the project in Android Studio**
+
+3. **Set up Firebase**
+   Create a Firebase project.
+   Add google-services.json to the /app directory.
+
+4. **Configure ZegoCloud**
+   Sign up at zegocloud.com.
+   Add your App ID and App Sign to the config files.
+
+1. **Clone the repository**
+   Build and run the app on an emulator or Android device.    
+      
+   
