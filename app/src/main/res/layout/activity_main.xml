@@ -77,11 +77,11 @@
              />
 
         <ImageView
+            android:id="@+id/call"
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_marginEnd="24dp"
-            android:src="@drawable/call"
-             />
+            android:src="@drawable/call" />
 
         <ImageView
             android:id="@+id/settings"

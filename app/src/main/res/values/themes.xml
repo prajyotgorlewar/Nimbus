@@ -12,4 +12,7 @@
         <item name="windowFixedWidthMajor">80%</item>
         <item name="windowActionBar">false</item>
     </style>
+
+
+
 </resources>

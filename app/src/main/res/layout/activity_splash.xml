@@ -10,28 +10,12 @@
 
     <ImageView
         android:id="@+id/logoImg"
-        android:layout_width="@dimen/_168sdp"
-        android:layout_height="@dimen/_84sdp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@drawable/chat" />
+        app:srcCompat="@drawable/logo" />
 
-    <TextView
-        android:id="@+id/logoName"
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:text="Nimbus"
-        android:textSize="@dimen/_20sdp"
-        android:textAlignment="center"
-        android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
 </androidx.constraintlayout.widget.ConstraintLayout>
