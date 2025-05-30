@@ -33,11 +33,8 @@ public class splash extends AppCompatActivity {
         });
 
         logo = findViewById(R.id.logoImg);
-        name = findViewById(R.id.logoName);
-        topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
-        logo.setAnimation(topAnimation);
-        name.setAnimation(bottomAnimation);
+        logo.setAnimation(bottomAnimation);
 
         new Handler().postDelayed(new Runnable() {
             @Override
