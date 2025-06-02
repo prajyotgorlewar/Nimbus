@@ -22,6 +22,7 @@ public class CallUserAdapter extends RecyclerView.Adapter<CallUserViewHolder> {
         this.userList = userList;
     }
 
+    
     @NonNull
     @Override
     public CallUserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
